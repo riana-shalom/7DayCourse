@@ -1,4 +1,4 @@
-# Space for imports
+import random
 
 def menu():
     print("Hello! What would you like to run?")
@@ -8,9 +8,17 @@ def menu():
         lab1()
     elif lab == 2:
         lab2()
+    elif lab == 3:
+        lab3()
+    elif lab == 4:
+        lab4()
+    elif lab == 4:
+        lab5()
+    elif lab == 4:
+        lab6()
 
 def lab1():
-    # Task 1 + Stretch (variables)
+    # Task 1 + Stretch (variables) - Python Intro
 
     print("\nHello User! Welcome to Lab 1!")
 
@@ -20,7 +28,7 @@ def lab1():
 
     print(f"In no particular order, {movie1}, {movie2}, and {movie3} are three of my favourite movies!")
 
-    # Task 2 + Stretch (an array for up to 3 extra toppings)
+    # Task 2 + Stretch (an array for up to 3 extra toppings) - Input fields
 
     name = input("\nWhat is your name? ") # Collecting order data for the user
     drink = input ("What drink do you want? ")
@@ -56,7 +64,7 @@ def lab1():
             print(f"Hello {name}, we are making you {quantity} {drink}!")
 
 def lab2():
-    # Task 1 + Stretch (if/else statements)
+    # Task 1 + Stretch (if/else statements) - Flow Statements
 
     age = 0
 
@@ -163,12 +171,103 @@ def lab2():
         else:
             print(f"The missing shorter value is {round(((side2**2)-(side1**2))**0.5)}.")
 
+def lab3():
+    # Task 1 - Part 1 – Squares
+
+    number = 1
+    print("\n\n")
+
+    while number < 100:
+        numberSqr = number * number
+        print(numberSqr)
+
+        if numberSqr > 2000:
+            break
+        else:
+            number += 1
+
+    # Task 1 - Part 2 + Stretch (custom values) – Investment
+
+    print("Let's calculate your investment statistics!")
+    initInvest = int(input("\nWhat is the initial investment value? Please enter a valid integer: "))
+    targetValue = int(input("\nWhat is target value of the investment? Please enter a valid integer: "))
+    intRate = int(input("\nWhat is the interest rate on the investment (as a percentage)? Please enter a valid number: "))
+    years = 0
+
+    #while initInvest <= targetValue:
+    #    initInvest = initInvest*intRate
 
 
-#Create a program called Pythagoras.py that can return the long angled side of a right angled triangle. Pythagoras’
-# Theorem states that the square of the long side (C) of a right-angled triangle is the sum of the squares of the two shorter sides (A and B).
-#The user should be able to implement the lengths of sides A and B to return the length of C.   
-#Stretch goal – You should use an input statement to allow the user to choose which side to calculate (A, B or C) and run the correct sum. 
+    #    years += 1
+
+
+    # Time = (Simple Interest x 100)/(Principal x Interest Rate)
+
+    #Calculates how many years it will take an initial investment of X to grow to a target value of Y if the interest rate is Z%.
+    
+    # Task 1 - Part 3 + Stretch (seekable letters) – Count Vowels
+
+    word = list(input("\nWhat word would you like us to search? "))
+    numberOfCons = int(input("How many consonants would you like to check for? Please enter an integer between 1 and 3: "))
+    letters = ["a", "e", "i", "o" , "u"]
+    counter = 0
+
+    for i in range(1,numberOfCons+1):
+        letters.append(input(f"Consonant {i}: "))
+
+    while len(word) > 0:
+        
+        if word[0] in letters:
+            counter += 1
+
+        word.pop(0)
+
+    print(f"Your letters {letters} appeared a total of {counter} times!\n")
+
+    # Task 2 - Part 1 – Counting Down
+
+    for number in range(31, 0, -3):
+        if number < 10:
+            print(f"{number} is less than 10")
+            break
+        else:
+            print(number)
+
+    # Task 2 - Part 2 + Stretch (custom values and hot-or-cold game) – Integer Between two limits
+
+    minValue = int(input("\nWhat is the minimum value? Please enter a valid integer: "))
+    maxValue = int(input("What is the maximum value? Please enter a valid integer: "))
+    noOfGuesses = int(input("What is number of guesses? Please enter an integer: "))
+
+    number = random.randint(minValue, maxValue)
+    print("NUMBER", number)
+
+    for i in range(0, noOfGuesses):
+        guess = int(input(f"What is your guess between {minValue} and {maxValue}? Please enter a valid integer: "))
+
+        if guess == number:
+            print("You won!")
+            break
+        elif ((number - (maxValue/8) < guess < (number + (maxValue/8)))):
+            print(f"Warm, {noOfGuesses-i-1} guesses left")
+        else:
+            print(f"Cold, {noOfGuesses-i-1} guesses left")
+
+        i += 1
+    
+    # Task 2 - Part 3 – Factorials
+
+    factNumber = int(input("\nWhat number would you like the factorial of? Please enter a valid integer: "))
+    factorial = 1
+
+    for i in range(1, factNumber+1):
+        factorial = factorial*i
+
+    print(factorial)
+
+def lab4():
+
+
 
 
 menu()
