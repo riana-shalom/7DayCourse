@@ -354,6 +354,48 @@ def lab5():
 
     # Subtask 8 - Use the string.format() to display the min, max, average, mean and median values 
         # This has already been done in the subtasks above. String.format
+    
+    print("You have seen the statistics!")
+
+def lab6():
+    # Task 1 + Stretch (functions calling eachother) - Basic Functions
+
+    def rollFour():
+        return random.randint(1, 4)
+
+    def rollSix(): # Pre-written
+        return random.randint(1, 6)
+
+    def rollEight():
+        return random.randint(1, 8)
+
+    def rollTen():
+        return random.randint(1, 10)
+
+    def rollDice(num):  # Pre-written
+        return random.randint(1, num)
+
+    def lotsOfDice():
+        fourNumbers = [random.randint (1, 6) for _ in range (4)] # A very cool way of generating numbers repeatedly
+        fourNumbers.remove(min(fourNumbers))
+        return fourNumbers
+
+    def generatingStats():
+        numbersRolled = []
+        for i in range(4):
+            numbersRolled.append(lotsOfDice())
+            print("here", numbersRolled)
+
+        return numbersRolled
+
+    print("\nLet's roll some dice!")
+    print("Rolling d4:", rollFour())
+    print("Rolling d6:", rollSix())
+    print("Rolling d8:", rollEight())
+    print("Rolling d10:", rollTen())
+    print(generatingStats())
+    print("Rolling a random number between 1 and 10, and then rolling another dice with the results:", rollDice(rollTen()))
+    # Stretch goal – Separate out the dice rolling function so that one function runs another so that each function only does one thing and is simplified. 
 
 
     
