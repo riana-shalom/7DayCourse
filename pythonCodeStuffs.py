@@ -1,8 +1,8 @@
-import random
+import random, statistics 
 
 def menu():
     print("Hello! What would you like to run?")
-    lab = int(input("Here are the different Labs!\n\n  1:  Python Intro\n  2:  Selection Lab\n  3:  Iteration Lab\n  4:  Lists\n  5:  Inbuilt Functions\n  6:  Custom Functions\n  7:  File IO\n  8:  PythonDB\n  9:  Classes\n  10: OOP\n  11: Testing\n  12: Linting\n  13: Flask\n\nPlease enter a numerical value for the Lab you want to access: "))
+    lab = float(input("Here are the different Labs!\n\n  1:  Python Intro\n  2:  Selection Lab\n  3:  Iteration Lab\n  4:  Lists\n  5:  Inbuilt Functions\n  6:  Custom Functions\n  7:  File IO\n  8:  PythonDB\n  9:  Classes\n  10: OOP\n  11: Testing\n  12: Linting\n  13: Flask\n\nPlease enter a numerical value for the Lab you want to access: "))
 
     if lab == 1:
         lab1()
@@ -208,16 +208,16 @@ def lab3():
     
     # Task 1 - Part 3 + Stretch (seekable letters) – Count Vowels
 
-    word = list(input("\nWhat word would you like us to search? "))
+    word = list(input("\nWhat word would you like us to search? ").lower())
     numberOfCons = int(input("How many consonants would you like to check for? Please enter an integer between 1 and 3: "))
     letters = ["a", "e", "i", "o" , "u"]
     counter = 0
 
     for i in range(1,numberOfCons+1):
-        letters.append(input(f"Consonant {i}: "))
+        letters.append(input(f"Consonant {i}: ").lower())
 
-    while len(word) > 0:
-        
+    while (len(word)) > 0:
+
         if word[0] in letters:
             counter += 1
 
@@ -308,24 +308,53 @@ def lab4():
     proportionOfAges = round(100*(noOf1625/len(rangedAgesList1665)), 2)
     print(f"\nThere are {noOf1625} ages (between 16 - 25) out of {len(rangedAgesList1665)} ages (between 16 - 65), which is a proportion of {proportionOfAges}%!")
 
-    # Task 2 + Stretch (seekable letters) - Counting Vowels with a list
+    # Task 2 (changed) - Movie Directors
+        # Initialise a Dictionary with the key being Directors and value being movie titles,
+        # Write a program which asks the user for a director name and returns all movies directed by that person
 
-    word = list(input("\nWhat word would you like us to search? "))
-    numberOfCons = int(input("How many consonants would you like to check for? Please enter an integer between 1 and 3: "))
-    letters = ["a", "e", "i", "o" , "u"]
-    counter = 0
+    directorMovies = {"tarantino" : ["Reservoir Dogs", "Django Unchained", "Kill Bill", "Pulp Fiction"], "lucas" : ["Star Wars", "Red Tails"], "waititi" : ["Thor Ragnarok", "Love and Thunder", "Boy", "Jojo Rabbit", "Free Guy", "Green Lantern"]}
+    print("\nThis is some of Tarantino's work: ", directorMovies["tarantino"])
+    info = input("Who would you like to see? Please enter either 'Lucas' or 'Waititi': ")
+    print(f"This is some of {info}'s work: ", directorMovies[info.lower()])
 
-    for i in range(1,numberOfCons+1):
-        letters.append(input(f"Consonant {i}: "))
+def lab5():
+    # Task 1 - Inbuilt Functions
+    
+    data="100,30,53,67,85,87,50,45,51,72,64,69,59,17,22,23,44,25,16,67,85,87,50,45,51,72,59,14,50,55,32,23,24,25,37,28,39,30,33,35,40,34,41,43,94,95,59,98,99,44,45,47,48,49,53,61,63,69,75,77,60,83"
 
-    while len(word) > 0:
-        
-        if word[0] in letters:
-            counter += 1
+    # Subtask 1 - Convert the string into a list of values
+    dataList = data.split(",")
 
-        word.pop(0)
+    for i in range(0, len(dataList)):
+        dataList[i] = int(dataList[i])
 
-    print(f"Your letters {letters} appeared a total of {counter} times!\n")
+    # Subtask 2 - Display the minimum and maximum value of grades
+    print("\nThe biggest score is", max(dataList))
+    print("The smallest score is", min(dataList))
+
+    # Subtask 3 - If your code displayed 100 as minimum and 99 as maximum work out why it has done this
+        # My code did not do this. This would happen if the 'for' loop wasn't there, as this converts each string into an integer number
+    
+    # Subtask 4 - Display the average of grades to 2 decimal points
+    averageMean = 0
+
+    for i in range(0, len(dataList)):
+        averageMean += dataList[i]
+
+    print(f"\nUsing no imports, the mean average of the data list is: {round((averageMean/len(dataList)), 2)}")
+
+    # Subtask 5 - Import the statistics library using - `import statistics`
+        # This was imported on line 1
+
+    # Subtask 6 - Use the statistics.mean() function to get the average grade to 2 decimal points
+    print(f"Using Statistics, the mean average of the data list is: {round(statistics.mean(dataList), 2)}")
+
+    # Subtask 7 - Display the median() value of this list
+    print(f"Using Statistics, the median average of the data list is: {statistics.median(dataList)}")
+
+    # Subtask 8 - Use the string.format() to display the min, max, average, mean and median values 
+        # This has already been done in the subtasks above. String.format
+
 
     
 menu()
