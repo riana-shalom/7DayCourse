@@ -397,38 +397,48 @@ def lab6():
     
     # Task 2 + Stretch ('Complex version: Bracketed salary taken into account') - Basic Functions
 
-    def autoCalculating(salary, taxBracket):
-        pass
+    # No tax paid on £12,570 personal allowance
+    # £12,571 to £23,000 starter rate of 19%, so if this is surpassed there is a guaranteed tax of £1981.70 for this bracket
+    # £23,001 to £40,000 intermediate rate of 30%, so if this is surpassed there is a guaranteed tax of £5100.00 for this bracket
+    # £40,001 to £150,000 higher rate of 41%, so if this is surpassed there is a guaranteed tax of £45100.00 for this bracket
+    # Above £150,000 top rate of 46%, so if this is surpassed there is a guaranteed tax of £69000.00 for this bracket
 
-    def taxCalculations():
-        pass
+    def autoCalculating(taxableBracketSalary, taxBracket):
+        return (taxableBracketSalary * taxBracket)
 
-    def taxCalculations1(salary):
-        if salary < 12570:
+    def taxCalculations1(salary): # Entire Salary will be taxed to the bracket it belongs in
+        if salary < 12571:
             return 0
-        elif salary < 23000:
+        elif salary < 23001:
             return (salary*0.19)
-        elif salary < 40000:
+        elif salary < 40001:
             return (salary*0.30)
-        elif salary < 150000:
+        elif salary < 150001:
             return (salary*0.41)
         else:
             return (salary*0.46)
 
-    
-
+    def taxCalculations2(salary): # Complex version: With the salary it is taxed correctly with it being bracketed, this should be done with a series of loops and conditional statements
+        if salary < 12570:
+            return 0
+        elif salary < 23001:
+            taxableBracketSalary = salary - 12570
+            return (autoCalculating(taxableBracketSalary, 0.19))
+        elif salary < 40001:
+            taxableBracketSalary = salary - 23000
+            return(1981.70+(autoCalculating(taxableBracketSalary, 0.30)))
+        elif salary < 150001:
+            taxableBracketSalary = salary - 40000
+            return(1981.70+5100.00+(autoCalculating(taxableBracketSalary, 0.41)))
+        else:
+            taxableBracketSalary = salary - 150000
+            return(1981.70+5100.00+45100.00+69000+(autoCalculating(taxableBracketSalary, 0.46)))
 
     salary = round(float(input("\nEnter a salary - Please enter a valid number: ")), 2)
-    print("You will pay tax of £", taxCalculations1(salary), f"for salary £{salary}")
-    
-# No tax paid on £12,570 personal allowance.
-# £12,571 to £23,000 starter rate of 19%
-# £23,000 to £40,000 intermediate rate of 30%
-# £40,001 to £150,000 higher rate of 41%
-# Above £150,000 top rate of 46%
-
-# Complex version: With the salary it is taxed correctly with it being bracketed, this should be done with a series of loops and conditional statements
-
+    basic = salary - round(taxCalculations1(salary), 2)
+    complex = salary - round(taxCalculations2(salary), 2)
+    print(f"Basic, you will pay tax of £{basic} for salary £{salary}, bringing your total salary to £{basic}")
+    print(f"Complex, after allocating tax brackets, you will pay tax of £{complex} for salary £{salary}, bringing your total salary to £{complex}")
     
 menu()
 print("\nDONE\n")
