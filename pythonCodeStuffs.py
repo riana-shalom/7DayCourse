@@ -384,7 +384,6 @@ def lab6():
         numbersRolled = []
         for i in range(4):
             numbersRolled.append(lotsOfDice())
-            print("here", numbersRolled)
 
         return numbersRolled
 
@@ -393,10 +392,42 @@ def lab6():
     print("Rolling d6:", rollSix())
     print("Rolling d8:", rollEight())
     print("Rolling d10:", rollTen())
-    print(generatingStats())
+    print("Here are your Generated Stats:", generatingStats())
     print("Rolling a random number between 1 and 10, and then rolling another dice with the results:", rollDice(rollTen()))
-    # Stretch goal – Separate out the dice rolling function so that one function runs another so that each function only does one thing and is simplified. 
+    
+    # Task 2 + Stretch ('Complex version: Bracketed salary taken into account') - Basic Functions
 
+    def autoCalculating(salary, taxBracket):
+        pass
+
+    def taxCalculations():
+        pass
+
+    def taxCalculations1(salary):
+        if salary < 12570:
+            return 0
+        elif salary < 23000:
+            return (salary*0.19)
+        elif salary < 40000:
+            return (salary*0.30)
+        elif salary < 150000:
+            return (salary*0.41)
+        else:
+            return (salary*0.46)
+
+    
+
+
+    salary = round(float(input("\nEnter a salary - Please enter a valid number: ")), 2)
+    print("You will pay tax of £", taxCalculations1(salary), f"for salary £{salary}")
+    
+# No tax paid on £12,570 personal allowance.
+# £12,571 to £23,000 starter rate of 19%
+# £23,000 to £40,000 intermediate rate of 30%
+# £40,001 to £150,000 higher rate of 41%
+# Above £150,000 top rate of 46%
+
+# Complex version: With the salary it is taxed correctly with it being bracketed, this should be done with a series of loops and conditional statements
 
     
 menu()
