@@ -12,9 +12,9 @@ def menu():
         lab3()
     elif lab == 4:
         lab4()
-    elif lab == 4:
+    elif lab == 5:
         lab5()
-    elif lab == 4:
+    elif lab == 6:
         lab6()
 
 def lab1():
@@ -73,6 +73,7 @@ def lab2():
 
         try:
             age = int(age)
+
             if age > 0: # Valid must be greater than 0 for an age
                 break
             else:
@@ -121,7 +122,7 @@ def lab2():
 
         try:
             grade = int(grade)
-
+            
             if (grade >= 0) or (grade <= 100): # Valid must be greater than 0 and less than 100
                 break
             else:
@@ -266,9 +267,66 @@ def lab3():
     print(factorial)
 
 def lab4():
+    # Task 1 - Working with large list
 
+    ages =[12,18,33,84,45,67,12,82,95,16,10,23,43,29,40,34,30,16,44,69,70,74,38,65,36,83,50,11,79,64,78,37,3,8,68,22,4,60,33,82,45,23,5,18,28,99,17,81,14,88,50,19,59,7,44,93,35,72,25,63,11,69,11,76,10,60,30,14,21,82,47,6,21,88,46,78,92,48,36,28,51]
 
+    # Subtask 1 - Record the length of the list and save this as a variable
+    lengthOfAges = len(ages)
 
+    # Subtask 2 - Using a loop, display all the numbers in the list line by line
+    print("\nHere are all the current ages: ")
+    for i in range(0,lengthOfAges):
+        print(ages[i])
 
+    # Subtask 3 - Looping through the list, increase the value of each age by 1
+    for i in range(0,lengthOfAges):
+        ages[i] = ages[i] + 1
+    
+    # Subtask 4 - Create a new list which only contains the ages in the age range of 16 – 65, display the new list
+    rangedAgesList1665 = []
+
+    for i in range(lengthOfAges): 
+        if (16 <= ages[i] <= 65):
+            rangedAgesList1665.append(ages[i])
+
+    print("\nHere is the age range limited list, from 16-65: ", rangedAgesList1665)
+
+    #5)	Display the count of 16 – 25 year olds in the new list
+    noOf1625 = 0
+
+    for i in range(0,len(rangedAgesList1665)):
+        if (16 <= ages[i] <= 25):
+            noOf1625 += 1
+
+    print(f"\nThere are {noOf1625} ages between 16-25 in your new list")
+
+    #6)	Sort the ages of the new list
+    rangedAgesList1665.sort()
+
+    #7)	What proportion of people belong in the 16 – 25 category within the new list
+    proportionOfAges = round(100*(noOf1625/len(rangedAgesList1665)), 2)
+    print(f"\nThere are {noOf1625} ages (between 16 - 25) out of {len(rangedAgesList1665)} ages (between 16 - 65), which is a proportion of {proportionOfAges}%!")
+
+    # Task 2 + Stretch (seekable letters) - Counting Vowels with a list
+
+    word = list(input("\nWhat word would you like us to search? "))
+    numberOfCons = int(input("How many consonants would you like to check for? Please enter an integer between 1 and 3: "))
+    letters = ["a", "e", "i", "o" , "u"]
+    counter = 0
+
+    for i in range(1,numberOfCons+1):
+        letters.append(input(f"Consonant {i}: "))
+
+    while len(word) > 0:
+        
+        if word[0] in letters:
+            counter += 1
+
+        word.pop(0)
+
+    print(f"Your letters {letters} appeared a total of {counter} times!\n")
+
+    
 menu()
 print("\nDONE\n")
